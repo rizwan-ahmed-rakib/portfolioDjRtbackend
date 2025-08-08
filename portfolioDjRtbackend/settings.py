@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'aboutMe_app.apps.AboutmeAppConfig',
     'rest_framework',
+    'corsheaders',
+    'django_cleanup.apps.CleanupConfig',
 
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,6 +56,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'portfolioDjRtbackend.urls'
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 TEMPLATES = [
     {

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator,FileExtensionValidator
 
 # Create your models here.
 class AboutMe(models.Model):
@@ -6,7 +7,11 @@ class AboutMe(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     designation = models.CharField(max_length=300)
-    resume = models.ImageField(upload_to="aboutMe/resume", null=True, blank=True)
+    resume = models.FileField(
+    upload_to="aboutMe/resume",null=True,
+    validators=[FileExtensionValidator(allowed_extensions=['pdf', 'doc', 'docx'])],
+    help_text="শুধুমাত্র PDF, DOC বা DOCX ফাইল আপলোড করুন"
+        )
     hero_image = models.ImageField(upload_to="aboutMe/hero_image", null=True, blank=True)
     about_me = models.TextField()
     experience = models.TextField(null=True, blank=True)
@@ -20,7 +25,7 @@ class Skill(models.Model):
     name = models.CharField(max_length=100)
     percentage = models.IntegerField()
     def __str__(self):
-        return self.name + " " + self.percentage
+        return self.name
 
 class Service(models.Model):
     name = models.CharField(max_length=200)
