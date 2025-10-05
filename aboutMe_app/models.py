@@ -16,6 +16,10 @@ class AboutMe(models.Model):
     about_me = models.TextField()
     experience = models.TextField(null=True, blank=True)
     hilight_in_experience = models.TextField(null=True, blank=True)
+    education_title = models.TextField(null=True, blank=True)
+    education_institute = models.TextField(null=True, blank=True)
+    short_educational_description = models.TextField(null=True, blank=True)
+
 
     def __str__(self):
         return self.first_name + " " + self.last_name
